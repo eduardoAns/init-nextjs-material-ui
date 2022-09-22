@@ -40,6 +40,7 @@ export const Sidebar = () => {
 
     const { sidemenuOpen, closeSideMenu  } = useContext( UIContext );
     const navigateTo = ( url: string ) => {
+        closeSideMenu()
         router.push(url);
     }
 
