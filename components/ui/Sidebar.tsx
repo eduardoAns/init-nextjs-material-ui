@@ -6,6 +6,7 @@ import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 
 import { UIContext } from '../../context/ui';
+import router from 'next/router';
 
 interface NavProps {
     name: string;
@@ -19,26 +20,28 @@ const menuItems: NavProps[] = [
     {
         name: 'Inbox',
         icon: <InboxOutlinedIcon />,
-        link: '/inbox'
+        link: '/'
     },{
         name: 'Sent',
         icon: <MailOutlineOutlinedIcon />,
-        link: '/sent'
+        link: '/'
     },{
         name: 'Drafts',
         icon: <MailOutlineOutlinedIcon />,
-        link: '/drafts'
+        link: '/'
     },{
-        name: 'Trash',
+        name: 'about',
         icon: <InboxOutlinedIcon />,
-        link: '/trash'
+        link: '/about'
     }]
 
 
 export const Sidebar = () => {
 
     const { sidemenuOpen, closeSideMenu  } = useContext( UIContext );
-
+    const navigateTo = ( url: string ) => {
+        router.push(url);
+    }
 
     return (
         <Drawer
@@ -54,8 +57,12 @@ export const Sidebar = () => {
 
                 <List>
                     {
-                        menuItems.map( ({name, icon}) => (
-                            <ListItem button key={ name }>
+                        menuItems.map( ({name, icon, link}) => (
+                            <ListItem 
+                                button 
+                                key={ name }
+                                onClick={() => navigateTo(link)}
+                            >
                                 <ListItemIcon>
                                     { icon }                                
                                 </ListItemIcon>
@@ -69,8 +76,12 @@ export const Sidebar = () => {
 
                 <List>
                     {
-                        menuItems.map( ({name, icon}) => (
-                            <ListItem button key={ name }>
+                        menuItems.map( ({name, icon, link}) => (
+                            <ListItem 
+                                button 
+                                key={ name }
+                                onClick={() => navigateTo(link)}
+                            >
                                 <ListItemIcon>
                                     { icon }                                
                                 </ListItemIcon>
